@@ -18,8 +18,6 @@ This web app was designed to allow consultants (or any user) to enter probabilit
 
 Writing calculated data to a local file system as `info.log` is not really the best way to go about this, so a minimal Flask app was created as an API endpoint to consume payload retrieved from the frontend. (See [this post](https://stackoverflow.com/a/46467999/4477547) for more details).
 
-It should be noted that as this is a mini project it isn't designed to be deployed on production. So minifying & building for production is not taken into consideration here.
-
 ## About the logging API
 
 The API is fired on change events (i.e. when the slider is updated during user interaction). You can see this happening by opening a new terminal and run the command below to see the log being written
@@ -34,5 +32,5 @@ The API is fired on change events (i.e. when the slider is updated during user i
 ```
 
 <p align="center">
-  <img src="../logging-sample.gif">
+  <img src="./logging-sample.gif">
 </p>
