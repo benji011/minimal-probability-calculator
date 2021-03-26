@@ -40,4 +40,4 @@ This project uses [black](https://github.com/psf/black) for auto-formatting. Jus
 
 ## Design details
 
-This service is kept to a bare minimum and is responsible for writing data into the file system, specifically log files. In general, you don't want the frontend to do this since it poses some security risk. While it is possible to use the [FileSystem API](https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API) it is less tedius when comparing to Flask running as the backend.
+This service is kept to a bare minimum and is responsible for writing data into the file system, specifically log files. While it is possible to use the [FileSystem API](https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API) it's much faster in this case to use Python because it has better tools to let us do this.
