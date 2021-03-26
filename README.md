@@ -1,21 +1,38 @@
-# General overview
-
-A minimal web app that captures probability data from a user. The project is structured as a minimal front + backend that does the following:
-
-## Frontend
-
-Built with vuex. One of the easiest ways we can capture probability data and calculate it is by taking advantage of the Redux like state management framework built into the library. Initially all probability data is set to 0 until interaction on the slider components have been triggered. Depending on the page the user is on (e.g. CombinedWith to calculate `a` \* `b`) their respective action methods are called.
-
-These action methods call the calculation logic done on the mutation side that updates the value of their states. Then we are done and the initial getter will just display what the new values are after an update. As for logging, this is handled in a similar manner but this time we use `axios` to send a POST request to the backend for logging.
-
-## Backend
-
-This service is kept to a bare minimum and is responsible for writing data into the file system, specifically log files. In general, you don't want the frontend to do this since it poses some security risk. While it is possible to use the [FileSystem API](https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API) it is less tedius when comparing to Flask running as the backend.
-
 ## How to run
 
-Please refer to the below READMEs for more info on running this app locally.
-※ This app is was designed to be minimal and contains the bare minimum number of tests. With that said it's not mean't to be used in production.
+- For the [frontend](./frontend/README.md)
+- For the [backend](./backend/README.md)
 
-- How to run the [frontend](./frontend/README.md)
-- How to run the [backend](./backend/README.md)
+# Project setup
+
+This web app was designed to allow consultants (or any user) to enter probabilities to carry out basic calculations.
+
+`element-ui` has a nice slider component which allows for customizing what values can be considered valid. Our use case is for both probabilities to be in the range from `0` to `1`. Any decimal number between this range is valid while the rest is not. e.g.
+
+| Valid | Invalid |
+| ----- | ------- |
+| 0     | 2       |
+| 1     | -1      |
+| 0.5   | -0.5    |
+| 0.99  | 1.1     |
+
+Writing calculated data to a local file system as `info.log` is not really the best way to go about this, so a minimal Flask app was created as an API endpoint to consume payload retrieved from the frontend. (See [this post](https://stackoverflow.com/a/46467999/4477547) for more details).
+
+It should be noted that as this is a mini project it isn't designed to be deployed on production. So minifying & building for production is not taken into consideration here.
+
+## About the logging API
+
+The API is fired on change events (i.e. when the slider is updated during user interaction). You can see this happening by opening a new terminal and run the command below to see the log being written
+
+```
+❯ cd path/to/your/folder/probability-calculator-backend
+❯ tail -f logs/info.log
+
+[3/24/2021, 4:18:32 PM] - type-of-calculation [either], inputs-received [{'first': 0.5, 'second': 0.6}], result [0.8]
+[3/24/2021, 4:18:32 PM] - type-of-calculation [either], inputs-received [{'first': 0.5, 'second': 0.5}], result [0.8]
+[3/24/2021, 4:18:32 PM] - type-of-calculation [either], inputs-received [{'first': 0.5, 'second': 0.5}], result [0.75]
+```
+
+<p align="center">
+  <img src="../logging-sample.gif">
+</p>

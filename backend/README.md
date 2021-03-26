@@ -1,10 +1,8 @@
-## Backend for the probability counter
+## About
 
 A very simple backend app using Flask specifically to log calculations from the frontend as local .txt files.
 
-### Note:
-
-The requirements stated all calculations should be logged into a text file. As such, all records passed in from the frontend are recorded according to those specifications. In real life these should have `.log` extensions because these are automatically generated. Anything ending with `.txt` should be considered created by some user.
+※ Note: requirements stated all calculations should be logged into a text file. As such, all records passed in from the frontend are recorded according to those specifications. In real life these should have `.log` extensions because these are automatically generated. Anything ending with `.txt` should be considered created by some user.
 
 ## Quick start
 
@@ -32,3 +30,7 @@ This project uses [black](https://github.com/psf/black) for auto-formatting. Jus
 ```bash
 black .
 ```
+
+## Design details
+
+This service is kept to a bare minimum and is responsible for writing data into the file system, specifically log files. In general, you don't want the frontend to do this since it poses some security risk. While it is possible to use the [FileSystem API](https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API) it is less tedius when comparing to Flask running as the backend.
