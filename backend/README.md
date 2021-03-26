@@ -7,8 +7,9 @@ A very simple backend app using Flask specifically to log calculations from the 
 ## Quick start
 
 ```bash
+❯ cd backend
 ❯ mv .env.example .env
-❯ cd backend && flask run
+❯ mkdir logs && flask run
 ```
 
 To verify logging works, just use the below command in a separate window:
