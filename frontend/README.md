@@ -8,7 +8,8 @@ A Vuex frontend that enables the user to enter 2 values to calculate the probabi
 ### Compiles and hot-reloads for development
 
 ```
-❯ yarn serve
+❯ cd frontend
+❯ yarn && yarn serve
 ```
 
 ### Run your unit tests

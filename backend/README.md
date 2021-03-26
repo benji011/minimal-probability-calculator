@@ -6,10 +6,22 @@ A very simple backend app using Flask specifically to log calculations from the 
 
 ## Quick start
 
+Install dependencies
+
 ```bash
-❯ cd backend
+❯ cd backend && pip install -r requirements.txt
+```
+
+Copy over the .env file then prepare a logs directory:
+
+```bash
 ❯ mv .env.example .env
-❯ mkdir logs && flask run
+```
+
+Finally, run the app
+
+```bash
+❯ flask run
 ```
 
 To verify logging works, just use the below command in a separate window:
