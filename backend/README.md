@@ -7,20 +7,26 @@ A very simple backend app using Flask specifically to log calculations from the 
 ## Quick start
 
 ```bash
-mv .env.example .env
-cd backend && flask run
+❯ mv .env.example .env
+❯ cd backend && flask run
 ```
 
 To verify logging works, just use the below command in a separate window:
 
 ```bash
-tail -f logs/log.txt
+❯ tail -f logs/log.txt
 ```
 
 ## Unit tests
 
 ```bash
-pytest
+❯ pytest
+```
+
+## Linting
+
+```bash
+❯ flake8 .
 ```
 
 ## Formatting
@@ -28,7 +34,7 @@ pytest
 This project uses [black](https://github.com/psf/black) for auto-formatting. Just type the below command and everything will be reformatted to the preconfigured settings (which you can verify from [pyproject.toml](./pyproject.toml))
 
 ```bash
-black .
+❯ black .
 ```
 
 ## Design details
