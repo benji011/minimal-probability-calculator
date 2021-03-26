@@ -50,8 +50,8 @@ def logger():
         with open("logs/log.txt", "a") as file:
             file.write(info)
         return {"status": 200}
-    except Exception as e:
-        return 500
+    except Exception:
+        return {"status": 500}
 
 
 if __name__ == "__main__":
