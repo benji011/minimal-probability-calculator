@@ -1,49 +1,56 @@
 import { createStore } from "vuex";
 import axios from "axios";
 import { TYPES } from "@/constants";
+import Decimal from "decimal.js";
 
 export default createStore({
   state: {
     combinedWith: {
       probability: {
         first: 0,
-        second: 0
+        second: 0,
       },
-      result: 0
+      result: 0,
     },
     either: {
       probability: {
         first: 0,
-        second: 0
+        second: 0,
       },
-      result: 0
-    }
+      result: 0,
+    },
   },
   getters: {
-    getProbabilityCombinedWith: state => {
+    getProbabilityCombinedWith: (state) => {
       return state.combinedWith.probability;
     },
-    getProbabilityEither: state => {
+    getProbabilityEither: (state) => {
       return state.either.probability;
     },
-    getResultCombinedWith: state => {
+    getResultCombinedWith: (state) => {
       return state.combinedWith.result;
     },
-    getResultEither: state => {
+    getResultEither: (state) => {
       return state.either.result;
-    }
+    },
   },
   mutations: {
-    calculateCombinedWith: state => {
-      state.combinedWith.result =
-        state.combinedWith.probability.first *
-        state.combinedWith.probability.second;
+    calculateCombinedWith: (state) => {
+      state.combinedWith.result = Number(
+        new Decimal(state.combinedWith.probability.first).times(
+          state.combinedWith.probability.second
+        )
+      );
     },
-    calculateEither: state => {
-      state.either.result =
-        state.either.probability.first +
-        state.either.probability.second -
-        state.either.probability.first * state.either.probability.second;
+    calculateEither: (state) => {
+      state.either.result = Number(
+        Decimal.add(
+          state.either.probability.first,
+          state.either.probability.second
+        )
+          .minus(state.either.probability.first)
+          .times(state.either.probability.second)
+      );
     },
     logCalculation: (state, type) => {
       let input = {};
@@ -64,9 +71,9 @@ export default createStore({
         date: new Date().toLocaleString(),
         type: type,
         input: input,
-        result: result
+        result: result,
       });
-    }
+    },
   },
   actions: {
     calculateResult: (context, type) => {
@@ -83,7 +90,7 @@ export default createStore({
     },
     logCalculation: (context, type) => {
       context.commit("logCalculation", type);
-    }
+    },
   },
-  modules: {}
+  modules: {},
 });
